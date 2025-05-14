@@ -7,6 +7,8 @@ import Layout from "./layout/Layout";
 import { Toaster } from "react-hot-toast";
 import { useAuthStore } from "./store/useAuthStore";
 import { Loader } from "lucide-react";
+import AdminRoute from "./components/AdminRoute";
+import AddProblem from "./pages/AddProblem";
 
 const App = () => {
   const { authUser, checkAuth, isCheckingAuth } = useAuthStore();
@@ -42,6 +44,10 @@ const App = () => {
           path="/signup"
           element={!authUser ? <SignupPage /> : <Navigate to={"/"} />}
         />
+        <Route element={<AdminRoute/>}>
+        <Route path="/add-problem" element={authUser ?<AddProblem/>:<Navigate to={'/'}/>} />
+
+        </Route>
       </Routes>
     </div>
   );
